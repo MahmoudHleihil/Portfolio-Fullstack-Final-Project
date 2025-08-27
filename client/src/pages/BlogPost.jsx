@@ -5,20 +5,23 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export default function BlogPost() {
-  const { slug } = useParams();
+  const { slug } = useParams(); // Get blog slug from URL
   const [post, setPost] = useState(null);
 
+  // Initialize AOS animations and load the blog post on mount or slug change
   useEffect(() => {
     AOS.init({ duration: 1000 });
+
     async function load() {
       try {
-        const res = await fetch(API(`/api/blogs/${slug}`));
+        const res = await fetch(API(`/api/blogs/${slug}`)); // Fetch blog post by slug
         const data = await res.json();
-        setPost(data);
+        setPost(data); // Store post in state
       } catch (err) {
         console.error("Failed to load blog:", err);
       }
     }
+
     load();
   }, [slug]);
 
@@ -26,12 +29,12 @@ export default function BlogPost() {
 
   return (
     <div className="container py-5">
-      {/* Title */}
+      {/* Blog title */}
       <h1 className="fw-bold mb-3 text-primary" data-aos="fade-up">
         {post.title}
       </h1>
 
-      {/* Cover image */}
+      {/* Cover image, if exists */}
       {post.coverUrl && (
         <div className="mb-4 text-center" data-aos="zoom-in">
           <img
@@ -43,7 +46,7 @@ export default function BlogPost() {
         </div>
       )}
 
-      {/* Blog content */}
+      {/* Blog content rendered as HTML */}
       <div
         className="card bg-dark text-light p-4 shadow"
         data-aos="fade-up"

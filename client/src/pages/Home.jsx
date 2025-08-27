@@ -86,10 +86,10 @@ export default function Home() {
       <div className="mt-4" data-aos="fade-up" data-aos-delay="1000">
         <h5 className="text-uppercase text-secondary mb-3">Recent Projects</h5>
         <ul className="list-unstyled text-light small">
-          <li>📁 <strong>Task Manager API</strong> – Node.js backend with JWT auth and MongoDB.</li>
-          <li>♟️ <strong>Console Chess Game</strong> – Built in C++ using object-oriented design.</li>
-          <li>📊 <strong>Data Visualization Dashboard</strong> – React + Chart.js for dynamic analytics.</li>
-          <li>🧠 <strong>KNN Classifier</strong> – Python-based ML model trained on real-world datasets.</li>
+          <li><strong>Task Manager API</strong> – Node.js backend with JWT auth and MongoDB.</li>
+          <li><strong>Console Chess Game</strong> – Built in C++ using object-oriented design.</li>
+          <li><strong>Data Visualization Dashboard</strong> – React + Chart.js for dynamic analytics.</li>
+          <li><strong>KNN Classifier</strong> – Python-based ML model trained on real-world datasets.</li>
         </ul>
       </div>
 

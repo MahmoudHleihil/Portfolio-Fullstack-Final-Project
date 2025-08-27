@@ -1,19 +1,22 @@
 import { useEffect } from 'react';
-import AOS from 'aos';
+import AOS from 'aos'; // Animate On Scroll library
 import 'aos/dist/aos.css';
 import { FaGraduationCap, FaLaptopCode, FaUsers } from 'react-icons/fa';
 
 export default function About() {
+  // Initialize AOS animations on component mount
   useEffect(() => {
     AOS.init({ duration: 1200 });
   }, []);
 
   return (
     <div className="container py-5 text-light">
+      {/* Section title */}
       <h1 className="text-center mb-4" data-aos="fade-up">
         About Me
       </h1>
 
+      {/* Intro paragraph */}
       <p
         className="lead text-secondary text-center mb-5 px-md-5"
         data-aos="fade-up"
@@ -24,6 +27,7 @@ export default function About() {
         and solving real-world problems through clean, efficient code.
       </p>
 
+      {/* Cards showcasing background, skills, and vision */}
       <div className="row g-4">
         <div className="col-md-4" data-aos="fade-up" data-aos-delay="300">
           <div className="card bg-dark shadow-sm h-100 p-4 text-center">
@@ -59,6 +63,7 @@ export default function About() {
         </div>
       </div>
 
+      {/* Quote / mission statement */}
       <div className="mt-5 text-center" data-aos="fade-up" data-aos-delay="900">
         <blockquote className="fst-italic text-info">
           “My mission is to combine creativity and technology to build applications 

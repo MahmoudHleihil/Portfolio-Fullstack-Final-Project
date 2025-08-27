@@ -4,7 +4,7 @@ import { API } from "../../api/http";
 import { AuthCtx } from "../../context/AuthContext";
 
 export default function Login() {
-  const { login, setUser } = useContext(AuthCtx); // add setUser if your context has it
+  const { login, setUser } = useContext(AuthCtx);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -27,7 +27,7 @@ export default function Login() {
 
         // save user info in context/localStorage
         if (d.user) {
-          setUser?.(d.user); // optional, if your context supports it
+          setUser?.(d.user);
           localStorage.setItem("user", JSON.stringify(d.user));
         }
 

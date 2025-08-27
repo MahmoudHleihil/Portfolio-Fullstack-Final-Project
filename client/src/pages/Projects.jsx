@@ -3,25 +3,29 @@ import { API } from '../api/http';
 import ProjectCard from '../components/ProjectCard.jsx';
 
 export default function Projects() {
-  const [items, setItems] = useState([]);
-  const [skills, setSkills] = useState([]);
-  const [skill, setSkill] = useState('');
-  const [search, setSearch] = useState('');
+  const [items, setItems] = useState([]); // Projects list
+  const [skills, setSkills] = useState([]); // Available skills for filter
+  const [skill, setSkill] = useState(''); // Selected skill filter
+  const [search, setSearch] = useState(''); // Search query
 
+  // Load projects from API with optional filters
   const load = async () => {
     const qs = new URLSearchParams({ skill, search }).toString();
     const res = await fetch(API(`/api/projects?${qs}`));
     setItems(await res.json());
   };
 
+  // Reload projects whenever skill or search changes
   useEffect(() => { load(); }, [skill, search]);
+
+  // Load all skills once on mount
   useEffect(() => { fetch(API('/api/skills')).then(r => r.json()).then(setSkills); }, []);
 
   return (
     <div className="container my-5">
       <h1 className="mb-4 text-primary text-center">Projects</h1>
 
-      {/* Filters */}
+      {/* Filters: skill dropdown & search input */}
       <div className="card p-3 mb-4 shadow-sm d-flex flex-wrap gap-3 align-items-center">
         <select
           value={skill}

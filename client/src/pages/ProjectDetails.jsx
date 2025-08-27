@@ -6,6 +6,7 @@ export default function ProjectDetails() {
   const { slug } = useParams();
   const [p, setP] = useState(null);
 
+  // Load project data on mount or when slug changes
   useEffect(() => {
     async function load() {
       const res = await fetch(API(`/api/projects/${slug}`));
@@ -20,9 +21,10 @@ export default function ProjectDetails() {
   return (
     <div className="container my-5">
       <div className="card shadow p-4">
+        {/* Project title */}
         <h1 className="mb-3 text-primary">{p.title}</h1>
 
-        {/* Images */}
+        {/* Image carousel */}
         {p.images?.length > 0 && (
           <div id="projectCarousel" className="carousel slide mb-4">
             <div className="carousel-inner">
@@ -40,6 +42,8 @@ export default function ProjectDetails() {
                 </div>
               ))}
             </div>
+
+            {/* Carousel controls if multiple images */}
             {p.images.length > 1 && (
               <>
                 <button className="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
@@ -53,10 +57,10 @@ export default function ProjectDetails() {
           </div>
         )}
 
-        {/* Description */}
+        {/* Project description */}
         <p className="lead">{p.description}</p>
 
-        {/* YouTube Embed */}
+        {/* YouTube embed if provided */}
         {p.youtubeEmbed && (
           <div
             className="ratio ratio-16x9 mb-4"
@@ -64,21 +68,21 @@ export default function ProjectDetails() {
           />
         )}
 
-        {/* Links */}
+        {/* External links */}
         <div className="mb-3">
           {p.githubUrl && (
             <a href={p.githubUrl} target="_blank" rel="noreferrer" className="btn btn-dark me-2">
-              🔗 GitHub
+               GitHub
             </a>
           )}
           {p.liveUrl && (
             <a href={p.liveUrl} target="_blank" rel="noreferrer" className="btn btn-success">
-              🚀 Live Demo
+               Live Demo
             </a>
           )}
         </div>
 
-        {/* Skills */}
+        {/* Skills used in project */}
         {p.skills?.length > 0 && (
           <div>
             <h4 className="mt-4">Skills Used</h4>

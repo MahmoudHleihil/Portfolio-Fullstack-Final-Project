@@ -3,6 +3,7 @@ import AuthProvider from './context/AuthContext.jsx';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 
+// Public pages
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import Resume from './pages/Resume.jsx';
@@ -12,6 +13,7 @@ import BlogList from './pages/BlogList.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import Contact from './pages/Contact.jsx';
 
+// Admin pages
 import Login from './pages/admin/Login.jsx';
 import Dashboard from './pages/admin/Dashboard.jsx';
 import ProjectsAdmin from './pages/admin/ProjectsAdmin.jsx';
@@ -22,13 +24,19 @@ import ResumeAdmin from './pages/admin/ResumeAdmin.jsx';
 
 export default function App() {
   return (
+    // Wrap the app with BrowserRouter to enable routing
     <BrowserRouter>
+      {/* Provide authentication context to the whole app */}
       <AuthProvider>
         <div className="d-flex flex-column min-vh-100 bg-dark text-light">
+          
+          {/* Header is always visible */}
           <Header />
 
+          {/* Main content area with responsive container */}
           <main className="flex-grow-1 container px-3 py-4" style={{ maxWidth: 1200 }}>
             <Routes>
+              {/* Public routes */}
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/resume" element={<Resume />} />
@@ -38,6 +46,7 @@ export default function App() {
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<Contact />} />
 
+              {/* Admin routes */}
               <Route path="/admin/login" element={<Login />} />
               <Route path="/admin" element={<Dashboard />} />
               <Route path="/admin/projects" element={<ProjectsAdmin />} />
@@ -48,6 +57,7 @@ export default function App() {
             </Routes>
           </main>
 
+          {/* Footer is always visible */}
           <Footer />
         </div>
       </AuthProvider>

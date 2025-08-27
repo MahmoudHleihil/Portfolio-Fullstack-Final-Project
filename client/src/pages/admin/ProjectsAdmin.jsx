@@ -4,7 +4,7 @@ import { AuthCtx } from "../../context/AuthContext";
 import Select from 'react-select/creatable';
 
 export default function ProjectsAdmin() {
-  const { token, user } = useContext(AuthCtx); // include user
+  const { token, user } = useContext(AuthCtx);
   const [items, setItems] = useState([]);
   const [skills, setSkills] = useState([]);
   const [form, setForm] = useState({
@@ -106,116 +106,116 @@ const save = async () => {
       <h1 className="mb-4 text-primary">Projects Admin</h1>
 
       {/* Project Form */}
-<div className="row g-2">
-  {/* Inputs */}
-  <div className="col-md-6">
-    <input
-      className="form-control"
-      placeholder="Title"
-      value={form.title}
-      onChange={(e) => setForm({ ...form, title: e.target.value })}
-    />
-  </div>
-  {/* Slug input removed or disabled because it’s auto-generated */}
-  <div className="col-md-12">
-    <input
-      className="form-control"
-      placeholder="Summary"
-      value={form.summary}
-      onChange={(e) => setForm({ ...form, summary: e.target.value })}
-    />
-  </div>
-  <div className="col-md-12">
-    <textarea
-      className="form-control"
-      placeholder="Description"
-      rows={3}
-      value={form.description}
-      onChange={(e) => setForm({ ...form, description: e.target.value })}
-    />
-  </div>
-  <div className="col-md-6">
-    <input
-      className="form-control"
-      placeholder="GitHub URL"
-      value={form.githubUrl}
-      onChange={(e) => setForm({ ...form, githubUrl: e.target.value })}
-    />
-  </div>
-  <div className="col-md-6">
-    <input
-      className="form-control"
-      placeholder="Live URL"
-      value={form.liveUrl}
-      onChange={(e) => setForm({ ...form, liveUrl: e.target.value })}
-    />
-  </div>
-  <div className="col-md-12">
-    <label className="form-label">Skills</label>
-    <Select
-  isMulti
-  value={(form.skillIds || []).map((id) => {
-    const skill = (skills || []).find((s) => s.id === id);
-    return skill ? { value: skill.id, label: skill.name } : null;
-  }).filter(Boolean)}
-  onChange={(selected) => {
-    const newSkillIds = selected.map((s) => s.value);
-    setForm({ ...form, skillIds: newSkillIds });
-  }}
-  options={(skills || []).map((s) => ({ value: s.id, label: s.name }))}
-  placeholder="Select or type skills..."
-  onCreateOption={(inputValue) => {
-    fetch(API("/api/skills"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json", ...authHeader() },
-      body: JSON.stringify({ name: inputValue }),
-    })
-      .then((res) => res.json())
-      .then((newSkill) => {
-        setSkills([...skills, newSkill]);
-        setForm({
-          ...form,
-          skillIds: [...(form.skillIds || []), newSkill.id],
-        });
-      });
-  }}
-  styles={{
-    option: (provided, state) => ({
-      ...provided,
-      color: "black",
-      backgroundColor: state.isFocused ? "#e0f0ff" : "white",
-    }),
-    multiValueLabel: (provided) => ({ ...provided, color: "#000" }),
-    multiValueRemove: (provided) => ({
-      ...provided,
-      color: "#555",
-      ':hover': { backgroundColor: "#cce4ff", color: "#000" },
-    }),
-    control: (provided) => ({ ...provided, backgroundColor: "white" }),
-    placeholder: (provided) => ({ ...provided, color: "#6c757d" }),
-  }}
-/>
+      <div className="row g-2">
+        {/* Inputs */}
+        <div className="col-md-6">
+          <input
+            className="form-control"
+            placeholder="Title"
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
+          />
+        </div>
+        {/* Slug input removed or disabled because it’s auto-generated */}
+        <div className="col-md-12">
+          <input
+            className="form-control"
+            placeholder="Summary"
+            value={form.summary}
+            onChange={(e) => setForm({ ...form, summary: e.target.value })}
+          />
+        </div>
+        <div className="col-md-12">
+          <textarea
+            className="form-control"
+            placeholder="Description"
+            rows={3}
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+          />
+        </div>
+        <div className="col-md-6">
+          <input
+            className="form-control"
+            placeholder="GitHub URL"
+            value={form.githubUrl}
+            onChange={(e) => setForm({ ...form, githubUrl: e.target.value })}
+          />
+        </div>
+        <div className="col-md-6">
+          <input
+            className="form-control"
+            placeholder="Live URL"
+            value={form.liveUrl}
+            onChange={(e) => setForm({ ...form, liveUrl: e.target.value })}
+          />
+        </div>
+        <div className="col-md-12">
+          <label className="form-label">Skills</label>
+          <Select
+        isMulti
+        value={(form.skillIds || []).map((id) => {
+          const skill = (skills || []).find((s) => s.id === id);
+          return skill ? { value: skill.id, label: skill.name } : null;
+        }).filter(Boolean)}
+        onChange={(selected) => {
+          const newSkillIds = selected.map((s) => s.value);
+          setForm({ ...form, skillIds: newSkillIds });
+        }}
+        options={(skills || []).map((s) => ({ value: s.id, label: s.name }))}
+        placeholder="Select or type skills..."
+        onCreateOption={(inputValue) => {
+          fetch(API("/api/skills"), {
+            method: "POST",
+            headers: { "Content-Type": "application/json", ...authHeader() },
+            body: JSON.stringify({ name: inputValue }),
+          })
+            .then((res) => res.json())
+            .then((newSkill) => {
+              setSkills([...skills, newSkill]);
+              setForm({
+                ...form,
+                skillIds: [...(form.skillIds || []), newSkill.id],
+              });
+            });
+        }}
+        styles={{
+          option: (provided, state) => ({
+            ...provided,
+            color: "black",
+            backgroundColor: state.isFocused ? "#e0f0ff" : "white",
+          }),
+          multiValueLabel: (provided) => ({ ...provided, color: "#000" }),
+          multiValueRemove: (provided) => ({
+            ...provided,
+            color: "#555",
+            ':hover': { backgroundColor: "#cce4ff", color: "#000" },
+          }),
+          control: (provided) => ({ ...provided, backgroundColor: "white" }),
+          placeholder: (provided) => ({ ...provided, color: "#6c757d" }),
+        }}
+      />
 
-  </div>
-</div>
+        </div>
+      </div>
 
-{/* Save button */}
-<button
-  className="btn btn-primary mt-3"
-  onClick={save}
-  disabled={
-    !token ||  !form.title || !form.summary || !form.description
-  }
-  title={
-    !token
-      ? "You must be an admin to save projects"
-      : !form.title || !form.summary || !form.description
-      ? "Please fill in Title, Summary, and Description"
-      : ""
-  }
->
-  Save Project
-</button>
+      {/* Save button */}
+      <button
+        className="btn btn-primary mt-3"
+        onClick={save}
+        disabled={
+          !token ||  !form.title || !form.summary || !form.description
+        }
+        title={
+          !token
+            ? "You must be an admin to save projects"
+            : !form.title || !form.summary || !form.description
+            ? "Please fill in Title, Summary, and Description"
+            : ""
+        }
+      >
+        Save Project
+      </button>
 
       {/* Project List */}
       <div className="card p-3 shadow-sm">

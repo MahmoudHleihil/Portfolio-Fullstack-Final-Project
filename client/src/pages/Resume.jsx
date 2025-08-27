@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { API } from "../api/http";
 
 export default function Resume() {
+  // State for experience, education, certifications
   const [exp, setExp] = useState([]);
   const [edu, setEdu] = useState([]);
   const [certs, setCerts] = useState([]);
+  
+  // State for loading and error handling
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -16,6 +19,8 @@ export default function Resume() {
         const res = await fetch(API("/api/resume"));
         if (!res.ok) throw new Error("Failed to load resume");
         const data = await res.json();
+
+        // Update state with fetched data
         setExp(data.experience || []);
         setEdu(data.education || []);
         setCerts(data.certs || []);
@@ -33,14 +38,15 @@ export default function Resume() {
     <div className="container my-5">
       <h1 className="mb-4 text-primary">Resume</h1>
 
+      {/* Loading & error messages */}
       {loading && <p>Loading resume…</p>}
       {error && <p className="text-danger">{error}</p>}
 
       {!loading && !error && (
         <>
-          {/* Experience */}
+          {/* Experience Section */}
           <div className="card p-3 mb-4 shadow-sm">
-            <h3 className="mb-3">💼 Experience</h3>
+            <h3 className="mb-3">Experience</h3>
             {exp.length === 0 && <p className="text-muted">No experience added yet.</p>}
             <ul className="list-unstyled">
               {exp.map((e) => (
@@ -55,9 +61,9 @@ export default function Resume() {
             </ul>
           </div>
 
-          {/* Education */}
+          {/* Education Section */}
           <div className="card p-3 mb-4 shadow-sm">
-            <h3 className="mb-3">🎓 Education</h3>
+            <h3 className="mb-3">Education</h3>
             {edu.length === 0 && <p className="text-muted">No education added yet.</p>}
             <ul className="list-unstyled">
               {edu.map((e) => (
@@ -71,9 +77,9 @@ export default function Resume() {
             </ul>
           </div>
 
-          {/* Certifications */}
+          {/* Certifications Section */}
           <div className="card p-3 mb-4 shadow-sm">
-            <h3 className="mb-3">📜 Certifications</h3>
+            <h3 className="mb-3">Certifications</h3>
             {certs.length === 0 && <p className="text-muted">No certifications added yet.</p>}
             <ul className="list-unstyled">
               {certs.map((c) => (

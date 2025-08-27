@@ -96,7 +96,7 @@ const edit = (post) => {
     slug: post.slug || "",
     title: post.title || "",
     coverUrl: post.coverUrl || "",
-    contentHtml: post.contentHtml || "<p>Hello</p>", // fallback
+    contentHtml: post.contentHtml || "<p>Hello</p>",
     publishedAt: post.publishedAt || "",
     userId: user?.id || 1,
   });
@@ -136,13 +136,13 @@ const edit = (post) => {
           value={form.publishedAt}
           onChange={(e) => setForm({ ...form, publishedAt: e.target.value })}
         />
-<textarea
-  className="form-control my-2"
-  rows={6}
-  placeholder="HTML content"
-  value={form.contentHtml || "<p>Hello</p>"} // fallback
-  onChange={(e) => setForm({ ...form, contentHtml: e.target.value })}
-/>
+        <textarea
+          className="form-control my-2"
+          rows={6}
+          placeholder="HTML content"
+          value={form.contentHtml || "<p>Hello</p>"}
+          onChange={(e) => setForm({ ...form, contentHtml: e.target.value })}
+        />
         <button className="btn btn-success mt-2" onClick={save} disabled={!token}>
           {form.id ? "Update" : "Save"}
         </button>
@@ -180,15 +180,15 @@ const edit = (post) => {
                   <td>{p.publishedAt || "Draft"}</td>
                   <td>
                     <button className="btn btn-sm btn-secondary me-2" onClick={() => {
-setForm({
-    ...p,
-    slug: p.slug || "",
-    title: p.title || "",
-    coverUrl: p.coverUrl || "",
-    contentHtml: p.contentHtml || "<p>Hello</p>", // fallback
-    publishedAt: p.publishedAt || "",
-    userId: user?.id || 1,
-  });
+                      setForm({
+                          ...p,
+                          slug: p.slug || "",
+                          title: p.title || "",
+                          coverUrl: p.coverUrl || "",
+                          contentHtml: p.contentHtml || "<p>Hello</p>", // fallback
+                          publishedAt: p.publishedAt || "",
+                          userId: user?.id || 1,
+                        });
                     }}>
                       Edit
                     </button>
