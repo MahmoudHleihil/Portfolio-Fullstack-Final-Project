@@ -3,7 +3,7 @@
 // Base URL for API calls
 export const API = (path) => {
 
-  const base = 'http://localhost:3001';
+  const base = 'https://portfolio-fullstack-final-project-2.onrender.com';
   return `${base}${path}`;
 };
 
