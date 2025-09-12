@@ -2,6 +2,15 @@ import 'dotenv/config'; // Load environment variables from .env
 import express from 'express';
 import cors from 'cors';
 
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "dist"))); // or "build" depending on your bundler
+
+
 // Import route modules
 import auth from './src/routes/auth.js';
 import projects from './src/routes/projects.js';
@@ -33,6 +42,11 @@ app.use('/api/blogs', blogs);
 app.use('/api/contact', contact);
 app.use('/api', uploads);
 app.use('/api/resume', resume);
+
+// Catch-all: send back index.html for any unknown route
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 // Start the server
 const PORT = process.env.PORT || 3001;
