@@ -3,7 +3,7 @@
 // Base URL for API calls
 export const API = (path) => {
 
-  const base = 'https://portfolio-fullstack-final-project-2.onrender.com';
+  const base = 'https://portfolio-fullstack-final-project-3.onrender.com';
   return `${base}${path}`;
 };
 
