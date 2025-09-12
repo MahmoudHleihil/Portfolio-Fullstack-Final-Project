@@ -8,7 +8,6 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, "dist"))); // or "build" depending on your bundler
 
 
 // Import route modules
@@ -42,6 +41,8 @@ app.use('/api/blogs', blogs);
 app.use('/api/contact', contact);
 app.use('/api', uploads);
 app.use('/api/resume', resume);
+
+app.use(express.static(path.join(__dirname, "dist"))); // or "build" depending on your bundler
 
 // Catch-all: send back index.html for any unknown route
 app.get("*", (req, res) => {
