@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { FaProjectDiagram, FaTools, FaBlog, FaFileAlt, FaEnvelope } from "react-icons/fa";
 
 export default function Dashboard() {
@@ -15,12 +16,17 @@ export default function Dashboard() {
       <div className="row g-3">
         {sections.map((s, i) => (
           <div key={i} className="col-md-4">
-            <a href={s.path} className="text-decoration-none">
+            <NavLink
+              to={s.path}
+              className={({ isActive }) =>
+                `text-decoration-none ${isActive ? "fw-bold text-primary" : ""}`
+              }
+            >
               <div className="card shadow-sm h-100 p-3 text-center hover-shadow">
                 <div className="fs-1 text-primary mb-2">{s.icon}</div>
                 <h5 className="text-dark">{s.name}</h5>
               </div>
-            </a>
+            </NavLink>
           </div>
         ))}
       </div>
