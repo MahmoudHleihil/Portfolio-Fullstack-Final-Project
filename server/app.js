@@ -45,8 +45,9 @@ app.use('/api/resume', resume);
 app.use(express.static(path.join(__dirname, "dist"))); // or "build" depending on your bundler
 
 // Catch-all: send back index.html for any unknown route
+app.use(express.static(path.join(__dirname, "client", "dist")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 // Start the server
