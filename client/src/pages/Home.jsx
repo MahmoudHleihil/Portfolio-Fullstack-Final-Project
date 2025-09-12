@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaLinkedin, FaGithub, FaArrowDown, FaDownload } from 'react-icons/fa';
+import { FaProjectDiagram, FaTools, FaBlog, FaFileAlt, FaEnvelope } from 'react-icons/fa';
 import { TypeAnimation } from 'react-type-animation';
 import { NavLink } from 'react-router-dom';
 
