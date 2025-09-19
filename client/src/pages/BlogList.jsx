@@ -46,7 +46,7 @@ export default function BlogList() {
                   {new Date(p.createdAt || Date.now()).toLocaleDateString()}
                 </small>
                 <p className="card-text flex-grow-1 text-light small">
-                  {(p.contentHtml ? p.contentHtml.substring(0, 100) : '') + '...'}
+                  {(p.slug) + '...'}
                 </p>
                 <Link to={`/blog/${p.slug}`} className="btn btn-outline-info mt-auto">
                   Read More →
