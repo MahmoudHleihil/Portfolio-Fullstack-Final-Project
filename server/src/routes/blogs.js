@@ -14,7 +14,7 @@ r.get('/', async (req, res) => {
     orderBy: { publishedAt: 'desc' },
     skip: (Number(page)-1)*Number(pageSize),
     take: Number(pageSize),
-    select: { id:true, title:true, slug:true, coverUrl:true, publishedAt:true, createdAt:true }
+    select: { id:true, title:true, slug:true, contentHtml:true, coverUrl:true, publishedAt:true, createdAt:true }
   });
   res.json(posts);
 });
