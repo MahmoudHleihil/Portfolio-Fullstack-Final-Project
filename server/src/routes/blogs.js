@@ -55,17 +55,4 @@ r.delete('/:id', authRequired, adminOnly, async (req, res) => {
   res.json({ ok: true });
 });
 
-// Add a comment
-r.post('/:id/comments', async (req, res) => {
-  const { authorName, authorEmail, content } = req.body;
-  const c = await prisma.comment.create({ data: { postId: Number(req.params.id), authorName, authorEmail, content } });
-  res.status(201).json(c);
-});
-
-// Approve a comment (admin only)
-r.put('/comments/:cid/approve', authRequired, adminOnly, async (req, res) => {
-  const c = await prisma.comment.update({ where: { id: Number(req.params.cid) }, data: { isApproved: true } });
-  res.json(c);
-});
-
 export default r;
